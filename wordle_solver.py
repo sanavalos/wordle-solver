@@ -1,3 +1,5 @@
+import sys
+import time
 from word_bank import WORD_BANK
 
 def filter_words(correct_letters, incorrect_letters, misplaced_letters):
@@ -73,9 +75,15 @@ def main():
             print(", ".join(possible_words) if possible_words else "No matches found.")
         elif choice == "0":
             print("Goodbye!")
-            break
+            sys.exit(0)
         else:
             print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
-    main()
+    while True:
+        try:
+            main()
+        except KeyboardInterrupt:
+            print("\nRestarting the application...\n")
+            time.sleep(1)
+            continue
